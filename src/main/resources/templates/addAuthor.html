@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+</head>
+<body>
+<h1>Add Author</h1>
+<form method="POST" action="/authors/add">
+  Name:<input type="text" name="name"><br>
+  Surname:<input type="text" name="surname"><br>
+  Phone:<input type="text" name="phone"><br>
+  Date Of Birthday:<input type="date" name="dateOfBirthday"><br>
+  Gender:<select name="gender">
+    <option value="MALE">Male</option>
+    <option value="FEMALE">Female</option>
+  </select>
+  <button type="submit">add</button>
+</form>
+</body>
+</html>

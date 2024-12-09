@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Author Page</title>
+</head>
+<body>
+<h2>Authors Page</h2> | <a href="/authors/add">Add Author</a><br>
+<a href="/books">Books</a><br>
+<a href="/">Home</a><br>
+<table>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Surname</th>
+    <th>Phone</th>
+    <th>Date of birthday</th>
+    <th>Gender</th>
+  </tr>
+  <tr th:each="author : ${authors}">
+    <td th:text="${author.id}"></td>
+    <td th:text="${author.name}"></td>
+    <td th:text="${author.surname}"></td>
+    <td th:text="${author.phone}"></td>
+    <td th:text="${author.dateOfBirthday}"></td>
+    <td th:text="${author.gender}"></td>
+    <td><a th:href="@{/authors/delete(id=${author.id})}">Delete</a></td>
+    <td><a th:href="@{/authors/description(id=${author.id})}">Description</a></td>
+  </tr>
+</table>
+</body>
+</html>
