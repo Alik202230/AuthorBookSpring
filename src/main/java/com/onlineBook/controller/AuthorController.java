@@ -4,15 +4,16 @@ import com.onlineBook.entity.Author;
 import com.onlineBook.repository.AuthorRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
 public class AuthorController {
 
-  private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   private final AuthorRepository authorRepository;
 
   public AuthorController(AuthorRepository authorRepository) {
@@ -45,7 +46,7 @@ public class AuthorController {
 
   @GetMapping("/authors/description")
   public String getAuthorById(ModelMap modelMap, @RequestParam("id") int id) {
-    Author author = authorRepository.findByIdOrThrow(id);
+    Author author = authorRepository.findByIdOrElseThrow(id);
     modelMap.put("author", author);
     return "authorDescription";
   }
