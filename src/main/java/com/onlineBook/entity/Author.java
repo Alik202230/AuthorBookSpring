@@ -19,7 +19,7 @@ public class Author {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+  private Integer id;
   private String name;
   private String surname;
   private String phone;

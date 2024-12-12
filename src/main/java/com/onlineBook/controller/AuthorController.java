@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AuthorController {
@@ -24,12 +25,12 @@ public class AuthorController {
   public String getAuthorsPage(ModelMap model) {
     List<Author> authors = authorRepository.findAll();
     model.put("authors", authors);
-    return "authors";
+    return "author/authors";
   }
 
   @GetMapping("/authors/add")
   public String addAuthorPage() {
-    return "addAuthor";
+    return "author/addAuthor";
   }
 
   @PostMapping("/authors/add")
@@ -46,9 +47,13 @@ public class AuthorController {
 
   @GetMapping("/authors/description")
   public String getAuthorById(ModelMap modelMap, @RequestParam("id") int id) {
-    Author author = authorRepository.findByIdOrElseThrow(id);
-    modelMap.put("author", author);
-    return "authorDescription";
+    Optional<Author> authorOptional = authorRepository.findByIdOrElseThrow(id);
+    if (authorOptional.isPresent()) {
+      Author author = authorOptional.get();
+      modelMap.put("author", author);
+      return "author/authorDescription";
+    }
+    return "redirect:/authors";
   }
 
 }
