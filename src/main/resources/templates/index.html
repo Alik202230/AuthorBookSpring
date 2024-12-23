@@ -1,13 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" 
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Main Page</title>
 </head>
 <body>
-<h2>Hello from Spring Boot</h2><br>
+<div th:if="${currentUser != null}">
+  Hello <span th:text="${currentUser.name}"></span> | <a href="/logout">Logout</a>
+</div>
+<div th:if="${currentUser == null}">Welcome guest | <a href="/loginPage">Login</a></div>
 <a href="/books">Books</a><br>
 <a href="/authors">Authors</a><br>
+<a href="/users/register">Register</a>
+<th:block th:insert="~{fragment/customFragment::footer}"></th:block>
 </body>
 </html>

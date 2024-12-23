@@ -1,7 +1,8 @@
 package com.onlineBook.controller;
 
-import com.onlineBook.entity.Author;
-import com.onlineBook.repository.AuthorRepository;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,21 +10,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Optional;
+import com.onlineBook.entity.Author;
+import com.onlineBook.service.AuthorService;
 
 @Controller
 public class AuthorController {
 
-  private final AuthorRepository authorRepository;
+  private final AuthorService authorService;
 
-  public AuthorController(AuthorRepository authorRepository) {
-    this.authorRepository = authorRepository;
+  public AuthorController(AuthorService authorService) {
+    this.authorService = authorService;
   }
 
   @GetMapping("/authors")
   public String getAuthorsPage(ModelMap model) {
-    List<Author> authors = authorRepository.findAll();
+    List<Author> authors = this.authorService.getAllAuthors();
     model.put("authors", authors);
     return "author/authors";
   }
@@ -35,25 +36,23 @@ public class AuthorController {
 
   @PostMapping("/authors/add")
   public String addAuthor(@ModelAttribute Author author) {
-    authorRepository.save(author);
+    this.authorService.addAuthor(author);
     return "redirect:/authors";
   }
 
   @GetMapping("/authors/delete")
   public String deleteAuthor(@RequestParam("id") int id) {
-    authorRepository.deleteById(id);
+    this.authorService.deleteAuthorById(id);
     return "redirect:/authors";
   }
 
   @GetMapping("/authors/description")
   public String getAuthorById(ModelMap modelMap, @RequestParam("id") int id) {
-    Optional<Author> authorOptional = authorRepository.findByIdOrElseThrow(id);
-    if (authorOptional.isPresent()) {
-      Author author = authorOptional.get();
+    Optional<Author> author = this.authorService.getAuthorById(id);
+    if (author.isPresent()) {
       modelMap.put("author", author);
       return "author/authorDescription";
     }
     return "redirect:/authors";
   }
-
 }

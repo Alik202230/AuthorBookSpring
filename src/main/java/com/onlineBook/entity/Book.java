@@ -19,6 +19,6 @@ public class Book {
   private double price;
   private int qty;
   private Date createdAt;
-  @ManyToOne
+  @ManyToOne  
   private Author author;
 }
