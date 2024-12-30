@@ -34,5 +34,4 @@ public class BookServiceImpl implements BookService{
   public Optional<Book> getBookById(int id) {
     return this.bookRepository.findByIdOrElseThrow(id);
   }
-  
 }

@@ -13,7 +13,8 @@ public class MainController {
 
   @GetMapping("/loginPage")
   public String loginPage(@AuthenticationPrincipal CurrentUser currentUser) {
-    if (currentUser != null && currentUser.getUser() != null) return "redirect:/";
+    if (currentUser != null && currentUser.getUser() != null)
+      return "redirect:/";
     return "login";
   }
 
@@ -28,21 +29,22 @@ public class MainController {
     return "redirect:/";
   }
 
-  //@GetMapping("/")
+  // @GetMapping("/")
   // @RequestMapping(value = "/", method = RequestMethod.GET)
   // public String mainPage(ModelMap modelMap) {
-  //   Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-  //   Object principal = authentication.getPrincipal();
-  //   if (principal instanceof CurrentUser currentUser) {
-  //     User user = currentUser.getUser();
-  //     modelMap.put("user", user);
-  //   }
-  //   return "index";
+  // Authentication authentication =
+  // SecurityContextHolder.getContext().getAuthentication();
+  // Object principal = authentication.getPrincipal();
+  // if (principal instanceof CurrentUser currentUser) {
+  // User user = currentUser.getUser();
+  // modelMap.put("user", user);
   // }
-  
+  // return "index";
+  // }
+
   @GetMapping("/")
   public String mainPage() {
     return "index";
-  } 
+  }
 
 }

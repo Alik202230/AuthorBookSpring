@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Author Page</title>
+  <title>Search Result</title>
 </head>
 <body>
 <h2>Authors Page</h2> | <a href="/authors/add">Add Author</a><br>
@@ -16,9 +16,9 @@ Search: <form action="/authors/search" method="get">
   <button type="submit">search</button>
 </form>
 Filter: <form action="/authors/filter" method="get">
-  Name: <input type="text" name="name"/>
-  Surname: <input type="text" name="surname"/>
-  Phone: <input type="text" name="phone"/>
+  Name: <input type="text" name="name" th:value="${name}"/>
+  Surname: <input type="text" name="surname" th:value="${surname}"/>
+  Phone: <input type="text" name="phone" th:value="${phone}"/>
   Gender: <select name="gender">
     <option value="">-</option>
     <option value="MALE">MALE</option>
@@ -46,14 +46,5 @@ Filter: <form action="/authors/filter" method="get">
     <td><a th:href="@{/authors/description(id=${author.id})}">Description</a></td>
   </tr>
 </table>
-
-<div th:if="${authors.totalPages > 0}" class="pagination"
-  th:each="pageNumber : ${pageNumbers}">
-<a th:href="@{/authors(pageSize=${authors.size}, pageNumber=${pageNumber})}"
-  th:text="${pageNumber}"
-  th:class="${pageNumber==authors.number + 1} ? active"></a>
-</div>
-<br>
-
 </body>
 </html>
