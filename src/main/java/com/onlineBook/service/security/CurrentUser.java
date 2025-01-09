@@ -4,7 +4,9 @@ import org.springframework.security.core.authority.AuthorityUtils;
 
 import com.onlineBook.entity.User;
 
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 public class CurrentUser extends org.springframework.security.core.userdetails.User{
   
   private transient User user;
@@ -17,5 +19,4 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
   public User getUser() {
     return user;
   }
-
 }
