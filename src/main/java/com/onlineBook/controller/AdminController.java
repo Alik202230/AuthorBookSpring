@@ -22,5 +22,4 @@ public class AdminController {
     }
     return "admin/home";
   }
-
 }

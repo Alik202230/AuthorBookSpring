@@ -16,7 +16,7 @@ import jakarta.persistence.criteria.Root;
 
 public class AuthorSpecification implements Specification<Author> {
 
-  private transient SearchCriteria criteria;
+  private final transient SearchCriteria criteria;
 
   public AuthorSpecification (SearchCriteria criteria) {
     this.criteria = criteria;

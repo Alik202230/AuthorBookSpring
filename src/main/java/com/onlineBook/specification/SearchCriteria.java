@@ -2,16 +2,14 @@ package com.onlineBook.specification;
 
 import com.onlineBook.entity.Gender;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchCriteria {
-  private String name;
-  private String surname;
-  private String phone;
-  private Gender gender;
+  public String name;
+  public String surname;
+  public String phone;
+  public Gender gender;
 }
